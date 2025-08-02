@@ -13,7 +13,7 @@ return {
     explorer = { enabled = true },
     git = { enabled = false },
     gitbrowse = { enabled = false },
-    image = { enabled = false },
+    image = { enabled = true },
     indent = { enabled = true },
     input = { enabled = false },
     layout = { enabled = false },
