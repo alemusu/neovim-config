@@ -94,7 +94,9 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        'delve', -- Go
+        'cpptools', -- C/C++
+        'dubugpy', -- Python
       },
     }
 
@@ -142,6 +144,52 @@ return {
         -- On Windows delve must be run attached or it crashes.
         -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
         detached = vim.fn.has 'win32' == 0,
+      },
+    }
+    -- C++ config (cpptools)
+    dap.adapters.cpp = {
+      id = 'cppdbg',
+      type = 'executable',
+      command = vim.fn.stdpath 'data' .. '/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = 'Launch file',
+        type = 'cppdbg',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopAtEntry = true,
+        setupCommands = {
+          {
+            text = '-enable-pretty-printing',
+            description = 'enable pretty printing',
+            ignoreFailures = false,
+          },
+        },
+      },
+    }
+    dap.configurations.c = dap.configurations.cpp
+
+    -- Python config (debugpy)
+    dap.adapters.python = {
+      type = 'executable',
+      command = vim.fn.stdpath 'data' .. '/mason/packages/debugpy/venv/bin/python',
+      args = { '-m', 'debugpy.adapter' },
+    }
+
+    dap.configurations.python = {
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}', -- This will debug the current file
+        pythonPath = function()
+          return vim.fn.exepath 'python' or 'python'
+        end,
       },
     }
   end,
