@@ -1,8 +1,5 @@
 -- my neovim configuration :D 
 
--- general options
-vim.wo.relativenumber = true
-
 
 -- auto install vim-plug and plugins, if not found
 local data_dir = vim.fn.stdpath('data')
@@ -20,17 +17,20 @@ vim.loader.enable() -- SPEEEEEEED
 vim.call('plug#begin')
 
 -- pugin list
+Plug('folke/tokyonight.nvim') -- colorscheme
 Plug('nvim-lua/plenary.nvim') -- required for telescope
 Plug('nvim-telescope/telescope.nvim') -- telescope
-Plug('nvim-treesitter/nvim-treesitter') -- treesitte
+Plug('nvim-treesitter/nvim-treesitter') -- treesitter
 Plug('mbbill/undotree') -- undo tree
 Plug('tpope/vim-fugitive') -- git integration
 
 vim.call('plug#end')
 
+
 -- config and plugin config are in alternative files
 require("config.theme")
 require("config.mappings")
+require("config.options")
 
 require("plugins.telescope")
 require("plugins.colorscheme")
