@@ -2,6 +2,16 @@
 -- see line number relatively
 vim.wo.relativenumber = true
 
+-- Set line number column to transparent
+vim.cmd [[
+  hi LineNr guibg=NONE ctermbg=NONE
+  hi CursorLineNr guibg=NONE ctermbg=NONE
+  hi SignColumn guibg=NONE ctermbg=NONE
+]]
+
+-- use the hack nerd font to be able to display emoticons and imgs
+vim.g.have_nerd_font = true
+
 -- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()

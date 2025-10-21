@@ -2,7 +2,7 @@
 -- sets the leader key
 vim.g.mapleader = ' ' 
 
--- open explorer
+-- open default explorer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) 
 
 -- moves marked text
@@ -23,4 +23,8 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 -- substitude the word I'm over to the one I input in the whole file
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
+-- '<C-h>' '<C-l>' to move left/right between windows
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
 

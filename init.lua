@@ -17,12 +17,15 @@ vim.loader.enable() -- SPEEEEEEED
 vim.call('plug#begin')
 
 -- pugin list
-Plug('folke/tokyonight.nvim') -- colorscheme
+Plug('nyoom-engineering/oxocarbon.nvim') -- colorscheme
+Plug('nvim-tree/nvim-web-devicons') -- required for file explorer
+Plug('nvim-tree/nvim-tree.lua') -- file explorer
 Plug('nvim-lua/plenary.nvim') -- required for telescope
 Plug('nvim-telescope/telescope.nvim') -- telescope
 Plug('nvim-treesitter/nvim-treesitter') -- treesitter
 Plug('mbbill/undotree') -- undo tree
 Plug('tpope/vim-fugitive') -- git integration
+Plug('~whynothugo/lsp_lines.nvim') -- diagnostics
 
 vim.call('plug#end')
 
@@ -37,3 +40,5 @@ require("plugins.colorscheme")
 require("plugins.treesitter")
 require("plugins.undotree")
 require("plugins.fugitive")
+require("plugins.nvim-tree")
+
